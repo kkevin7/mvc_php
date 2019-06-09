@@ -1,8 +1,17 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<?php echo constant('URL');?>public/css/style.css">
-<div id="header">
-    <ul>
-        <li><a href="<?php echo constant('URL'); ?>main">HOME</a></li>
-        <li><a href="<?php echo constant('URL'); ?>alumno">Alumno</a></li>
-    </ul>
-</div>
+<link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/style.css">
+<link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/materialize/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<nav>
+    <div class="nav-wrapper grey darken-3">
+        <a href="<?php echo constant('URL'); ?>" class="brand-logo">MVC_PHP</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="<?php echo constant('URL'); ?>main">Home</a></li>
+            <li><a href="<?php echo constant('URL'); ?>alumno">Alumnos</a></li>
+            <li><a href="#">Docentes</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://kit.fontawesome.com/866cfd1594.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

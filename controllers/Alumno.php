@@ -44,5 +44,31 @@
             $this->view->render('alumno/detalle');
         }
 
+        function update(){
+            session_start();
+            $id_alumno = $_SESSION['id_alumno'];
+            $nombre = $_POST['nombre'];
+            $apellido  = $_POST['apellido'];
+            $telefono  = $_POST['telefono'];
+
+            unset($_SESSION['id_alumno']);
+
+            if($this->model->update(['id' => $id_alumno, 'nombre' => $nombre, 'apellido' => $apellido, 'telefono'=>$telefono])){
+                // actualizar alumno exito
+                $alumno = new Alumno();
+                $alumno->id = $id_alumno;
+                $alumno->nombre = $nombre;
+                $alumno->apellido = $apellido;
+                $alumno->telefono = $telefono;
+
+                $this->view->alumno = $alumno;
+                $this->view->mensaje = "Alumno actualizado correctamente";
+            }else{
+                // mensaje de error
+                $this->view->mensaje = "No se pudo actualizar el alumno";
+            }
+            $this->view->render('alumno/detalle');
+        }
+
     }
 ?>

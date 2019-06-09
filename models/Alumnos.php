@@ -5,5 +5,4 @@
         public $apellido;
         public $telefono;
     }
-
 ?>

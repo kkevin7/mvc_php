@@ -9,7 +9,9 @@
 <body>
     <?php require "views/header.php"; ?>
     <div id="main">
-        <h1>vista main</h1>
+        <h2>Vista Principal</h2>
+
+
     </div>
     <?php require 'views/footer.php'; ?>
 </body>
