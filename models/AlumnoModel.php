@@ -69,6 +69,7 @@ class AlumnoModel extends Model
         }
     }
 
+    //metodo que nos permite actualizar los registro de la base de datos
     public function update($item){
         $query = $this->db->conn()->prepare("UPDATE alumnos SET nombre = :nombre, apellido = :apellido, telefono = :telefono WHERE id_alumno = :id");
         try{

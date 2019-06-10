@@ -51,10 +51,11 @@
             $apellido  = $_POST['apellido'];
             $telefono  = $_POST['telefono'];
 
+            //Destruir la session
             unset($_SESSION['id_alumno']);
 
             if($this->model->update(['id' => $id_alumno, 'nombre' => $nombre, 'apellido' => $apellido, 'telefono'=>$telefono])){
-                // actualizar alumno exito
+                //Cargar en menoria la entity del alumno
                 $alumno = new Alumno();
                 $alumno->id = $id_alumno;
                 $alumno->nombre = $nombre;
@@ -62,12 +63,15 @@
                 $alumno->telefono = $telefono;
 
                 $this->view->alumno = $alumno;
-                $this->view->mensaje = "Alumno actualizado correctamente";
+                //$this->view->mensaje = "Alumno actualizado correctamente";
+                $this->index();
+                //$this->view->render('alumno/detalle');
+
             }else{
                 // mensaje de error
                 $this->view->mensaje = "No se pudo actualizar el alumno";
+                $this->view->render('errores/index');
             }
-            $this->view->render('alumno/detalle');
         }
 
     }

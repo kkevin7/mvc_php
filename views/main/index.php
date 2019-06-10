@@ -9,7 +9,9 @@
 <body>
     <?php require "views/header.php"; ?>
     <div id="main">
-        <h2>Vista Principal</h2>
+        <h2 class="centered">Vista Principal</h2>
+        
+        <label for="">La IP de servidor es: <?php echo $_SERVER['REMOTE_ADDR']; ?></label>
 
 
     </div>
