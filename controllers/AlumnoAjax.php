@@ -1,12 +1,12 @@
 <?php
 
-class Alumno extends Controller
+class AlumnoAjax extends Controller
 {
     function __construct()
     {
         parent::__construct();
+        $this->loadModel('Alumno');
         $this->view->alumnos = [];
-        //$this->view->alumno="";
     }
 
     function index()
@@ -14,7 +14,7 @@ class Alumno extends Controller
         $alumnos = $this->model->get();
         $this->view->estudiantes = $alumnos;
         $this->view->titulo = '<h1>Titulo de alumno</h1>';
-        $this->view->render('alumno/index');
+        $this->view->render('alumnoajax/index');
     }
 
     //metodo que muestra la interfaz inicial a la llamada del contralador
@@ -32,11 +32,12 @@ class Alumno extends Controller
         $this->index();
     }
 
+
     function eliminar($dato = null)
     {
         $id = $dato[0];
         $this->model->delete($id);
-        $this->index();
+        //$this->index();
     }
 
     function getById($dato = null)
@@ -44,12 +45,12 @@ class Alumno extends Controller
         $id = $dato[0];
         $alumno = $this->model->getById($id);
 
-        session_start();
-        $_SESSION['id_alumno'] = $alumno->id;
+        //session_start();
+        //$_SESSION['id_alumno'] = $alumno->id;
 
         //remderizando la vista de detalles
-        $this->view->alumno = $alumno;
-        $this->view->render('alumno/detalle');
+        //$this->view->alumno = $alumno;
+        //$this->view->render('alumno/detalle');
     }
 
     function update()
@@ -84,5 +85,3 @@ class Alumno extends Controller
     }
 
 }
-
-?>

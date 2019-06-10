@@ -21,7 +21,7 @@ body{
 #header ul li a{
     color: white;
     text-emphasis: none;
-    padding: 10;
+    padding: 10px;
 }
 
 #footer{
@@ -42,3 +42,14 @@ body{
 .padding-table{
     padding: 25px;
 }
+
+.margen-div{
+    margin: 15px;
+    padding: 25px;
+}
+
+.margen-form{
+    margin: 100px auto 0 auto;
+
+}
+

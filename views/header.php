@@ -8,7 +8,8 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="<?php echo constant('URL'); ?>main">Home</a></li>
             <li><a href="<?php echo constant('URL'); ?>alumno">Alumnos</a></li>
-            <li><a href="#">Docentes</a></li>
+            <li><a href="<?php echo constant('URL'); ?>alumnorest/findall">Alumno REST</a></li>
+            <li><a href="<?php echo constant('URL'); ?>alumnoajax">Alumno AJAX</a></li>
         </ul>
     </div>
 </nav>
