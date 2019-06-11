@@ -46,7 +46,7 @@ class AlumnoAjax extends Controller
         $alumno = $this->model->getById($id);
 
         session_start();
-        /$_SESSION['id_alumno'] = $alumno->id;
+        $_SESSION['id_alumno'] = $alumno->id;
 
         //remderizando la vista de detalles
         $this->view->alumno = $alumno;
