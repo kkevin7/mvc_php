@@ -43,17 +43,24 @@ $(document).ready(function (e) {
 
     //Metodo que se encargar de eliminar registro de la base datos
     $(document).on('click', '.btn_delete', function (e) {
-        var id = $(this).data('id_alumno');
-        $clicked_btn = $(this);
-        $.ajax({
-            url: $uri + "/eliminar/" + id,
-            type: 'DELETE',
-            data: {},
-            success: function (response) {
-                // Remover le td de la tabla
-                $clicked_btn.parent().parent().remove();
-            }
-        });
+
+        const confirm = window.confirm("¿Deseas eliminar el alumno ?");
+
+        if (confirm){
+            var id = $(this).data('id_alumno');
+
+            $clicked_btn = $(this);
+            $.ajax({
+                url: $uri + "/eliminar/" + id,
+                type: 'DELETE',
+                data: {},
+                success: function (response) {
+                    // Remover le td de la tabla
+                    $clicked_btn.parent().parent().remove();
+                }
+            });
+        }
+
     });
 
     //Guardar el valor de id
