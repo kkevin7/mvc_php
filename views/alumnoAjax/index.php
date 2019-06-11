@@ -12,12 +12,13 @@
 <?php require_once "views/header.php" ?>
 <div class="row margen-div">
     <div class="col s6">
+        <button id="btn_nuevo" class="waves-effect waves-light btn light-blue darken-3">Nuevo
+            Registro</button>
         <h4>Listado de Alumno</h4>
         <div class="z-depth-3 relleno-table">
-            <table class="responsive-table highlight ">
+            <table id="tb_alumno" class="responsive-table highlight ">
                 <thead class="blue darken-1 centered">
                 <tr>
-                    <td>ID</td>
                     <td>NOMBRE</td>
                     <td>APELLIDO</td>
                     <td>TELEFONO</td>
@@ -31,15 +32,21 @@
                     $alumno = $item;
                     ?>
                     <tr id="fila-<?php echo $alumno->id; ?>">
-                        <td><?php echo $alumno->id; ?></td>
-                        <td><?php echo $alumno->nombre; ?></td>
-                        <td><?php echo $alumno->apellido; ?></td>
-                        <td><?php echo $alumno->telefono; ?></td>
-                        <td><button class="waves-effect waves-light btn amber darken-3 btn_editar"
-                                    data-id_alumno="<?php echo $alumno->id; ?>" >Editar</button></td>
-                        <td><button class="waves-effect waves-light btn deep-orange darken-2 btn_eliminar" data-id_alumno="<?php echo $alumno->id; ?>"
-                               title="¿Deseas eiminar este registro?"
-                                >Eliminar</button></td>
+                        <td class="nombre"><?php echo $alumno->nombre; ?></td>
+                        <td class="apellido"><?php echo $alumno->apellido; ?></td>
+                        <td class="telefono"><?php echo $alumno->telefono; ?></td>
+                        <td>
+                            <button class="waves-effect waves-light btn amber darken-3 show_edit"
+                                    data-id_alumno="<?php echo $alumno->id; ?>">Editar
+                            </button>
+                        </td>
+                        <td>
+                            <button class="waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete"
+                                    data-id_alumno="<?php echo $alumno->id; ?>"
+                                    title="¿Deseas eiminar este registro?"
+                            >Eliminar
+                            </button>
+                        </td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -49,30 +56,37 @@
     </div>
     <div class="col s5 ">
 
-        <div class="row z-depth-3 margen-form ">
-            <form  method="post" class="col s12 centered">
+        <div id="div_form" class="row z-depth-3 margen-form ">
+            <form method="post" class="col s12 centered">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="icon_prefix" type="text" class="validate" name="nombre" data-length="25" required>
-                        <label for="icon_prefix">Nombres</label>
+                        <input id="nombre" type="text" class="validate nombre" name="nombre" data-length="25" required>
+                        <label for="nombre">Nombres</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="icon_telephone" type="text" class="validate" name="apellido" data-length="25" required>
-                        <label for="icon_telephone">Apellidos</label>
+                        <input id="apellido" type="text" class="validate apellido" name="apellido" data-length="25"
+                               required>
+                        <label for="apellido">Apellidos</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="text" class="validate" name="telefono" data-length="9" >
-                        <label for="icon_telephone">Telefono</label>
+                        <input id="telefono" type="text" class="validate" name="telefono" data-length="9">
+                        <label for="telefono">Telefono</label>
                     </div>
                 </div>
                 <div class="row center-align">
-                    <button type="submit" value="Registrar" class="waves-effect waves-light btn light-blue darken-3">Guardar</button>
-                    <a href="<?php echo constant('URL') ?>alumnoajax" class="waves-effect waves-light btn grey lighten-1">Cancelar</a>
+                    <button type="submit" id="btn_save" class="waves-effect waves-light btn light-blue darken-3">
+                        Guardar
+                    </button>
+                    <button type="submit" id="save_edit" class="waves-effect waves-light btn  cyan darken-1">
+                        Editar
+                    </button>
+                    <button id="btn_cancelar" type="button"
+                       class="waves-effect waves-light btn grey lighten-1">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -81,24 +95,9 @@
 </div>
 <?php require_once 'views/footer.php' ?>
 
-<!--<script>
-    $(function () {
+<script src="<?php echo constant('URL'); ?>/public/js/alumnoAjax.js"></script>
 
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: 'post.php',
-                data: $('form').serialize(),
-                success: function () {
-                    alert('form was submitted');
-                }
-            });
 
-        });
-
-    });
-</script> -->
 </body>
 
 </html>

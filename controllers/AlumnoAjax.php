@@ -45,24 +45,21 @@ class AlumnoAjax extends Controller
         $id = $dato[0];
         $alumno = $this->model->getById($id);
 
-        //session_start();
-        //$_SESSION['id_alumno'] = $alumno->id;
+        session_start();
+        /$_SESSION['id_alumno'] = $alumno->id;
 
         //remderizando la vista de detalles
-        //$this->view->alumno = $alumno;
-        //$this->view->render('alumno/detalle');
+        $this->view->alumno = $alumno;
+        $this->view->render('alumno/detalle');
     }
 
     function update()
     {
-        session_start();
-        $id_alumno = $_SESSION['id_alumno'];
+        $id_alumno = $_POST['id_alumno'];
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $telefono = $_POST['telefono'];
 
-        //Destruir la session
-        unset($_SESSION['id_alumno']);
 
         if ($this->model->update(['id' => $id_alumno, 'nombre' => $nombre, 'apellido' => $apellido, 'telefono' => $telefono])) {
             //Cargar en menoria la entity del alumno
@@ -83,5 +80,7 @@ class AlumnoAjax extends Controller
             $this->view->render('errores/index');
         }
     }
+
+
 
 }

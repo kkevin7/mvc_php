@@ -26,6 +26,7 @@ boton_editar.forEach(boton => {
 
         const id_alumno = this.dataset.id_alumno;
         const fila = document.querySelector("#fila-"+id_alumno);
+        const algo = fila.parent();
 
     })
 });

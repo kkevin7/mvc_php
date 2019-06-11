@@ -29,5 +29,5 @@
     </div>
 </footer>
 <script src=" <?php echo constant('URL'); ?>/public/js/materialize/materialize.min.js"></script>
-<!--<script src="<?php echo constant('URL'); ?>/public/js/jquery.js"></script>-->
-<script src="<?php echo constant('URL'); ?>/public/js/main.js"></script>
+<script src="<?php echo constant('URL'); ?>/public/js/jquery.js"></script>
+<!--<script src="<?php echo constant('URL'); ?>/public/js/main.js"></script>-->
