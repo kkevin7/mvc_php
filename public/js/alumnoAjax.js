@@ -31,9 +31,12 @@ $(document).ready(function (e) {
             },
             success: function (response) {
 
+                /*
                 httpRequest($uri, function () {
                     $("#tb_alumno").load($uri+" table#tb_alumno");
                 });
+                */
+                mostrarDatos();
 
                 $("#div_form").hide();
                 limpiar();
@@ -111,9 +114,12 @@ $(document).ready(function (e) {
             },
             success: function (response) {
 
+                /*
                 httpRequest($uri, function () {
                     $("#tb_alumno").load($uri+" table#tb_alumno");
                 });
+                 */
+                mostrarDatos();
 
                 $("#div_form").hide();
                 limpiar();
@@ -127,7 +133,7 @@ $(document).ready(function (e) {
             url: 'http://localhost/mvc_php/alumnorest/findall',
             type: 'GET',
             success: function (response) {
-                let valores = JSON.parse(response);
+                const valores = JSON.parse(response);
                 let tbody = '';
                 console.log(valores);
                 valores.forEach(alumno => {
@@ -135,8 +141,8 @@ $(document).ready(function (e) {
                         "<td>" + alumno.nombre + "</td>" +
                         "<td>" + alumno.apellido + "</td>" +
                         "<td>" + alumno.telefono + "</td>" +
-                        "<td><button class=\"waves-effect waves-light btn amber darken-3 show_edit\" data-id_alumno=\"" + alumno.id_alumno + "\">Editar</button></td>" +
-                        "<td><button class=\"waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete\" data-id_alumno=\"" + alumno.id_alumno + "\" title=\"¿Deseas eiminar este registro?\">Eliminar</button></td>" +
+                        "<td><button class=\"waves-effect waves-light btn amber darken-3 show_edit\" data-id_alumno=\"<?php echo $alumno->id; ?>\">Editar</button></td>" +
+                        "<td><button class=\"waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete\" data-id_alumno=\"<?php echo $alumno->id; ?>\" title=\"¿Deseas eiminar este registro?\">Eliminar</button></td>" +
                         "</tr>";
                 });
                 $("#tbody-alumnos").html(tbody)
