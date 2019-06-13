@@ -8,6 +8,7 @@ class AlumnoModel extends Model
         parent::__construct();
     }
 
+    //Metodo que devuelve todos los registro de la base datos
     function get()
     {
         $items = [];
@@ -28,6 +29,7 @@ class AlumnoModel extends Model
         }
     }
 
+    //Metodo que buscar registro en la base datos en base a un ID en la tabla
     function getById($id)
     {
         $item = new Alumnos();
@@ -46,7 +48,7 @@ class AlumnoModel extends Model
         }
     }
 
-    //metodo que pernmitira ingresar un registro a la bd
+    //metodo que permitira ingresar un registro a la bd
     function insert($data)
     {
         try {

@@ -9,31 +9,32 @@ class AlumnoRest extends Controller
     function __construct()
     {
         parent::__construct();
-        //Llamamos al modelo de la instancia que queremos utilizar
+        //Llamamos a la instacia del modelo que queremos utilizar 
         $this->loadModel('Alumno');
+        //Guardamos la URL donde se expondrá nuestro REST
         $this->url = constant('URL') . "alumnorest";
     }
 
     //Muestra todos los registro de la base datos
     function findAll()
     {
-        //Comprueba que la peticion hasido enviada por GET
+        //Comprueba que la peticion ha sido enviada por GET
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             try {
                 //Obtiene los datos del modelo
                 $rest = $this->model->get();
-                //Mouestra los datos en formato JSON
+                //Muestra los datos en formato JSON
                 echo json_encode($rest);
                 //Manda un estatus 200 que la peticion fue correcta
                 return http_response_code(200);
             } catch (Exception $e) {
-                //Manda un estatus 500 diciendo que algo salio mal el servidor
+                //Manda un estatus 500 diciendo que algo salio mal en el servidor
                 return http_response_code(500);
             }
         } else {
-            //Status de error que realizo un bad request
+            //Manda un error diciendo que el usuario realizo un bad request
             return http_response_code(400);
-            // tell the user
+            //Mensaje que verá el usuario
             echo json_encode(array("Mensaje" => "Algo salio mal al realizar la peticion"));
         }
     }

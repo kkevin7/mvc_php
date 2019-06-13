@@ -14,6 +14,19 @@ $(document).ready(function (e) {
         $("#div_form").hide();
     });
 
+    //Metodo que se encarga de limpiar los campos del formulario
+    function limpiar() {
+        $("#nombre").val("");
+        $("#apellido").val("");
+        $("#telefono").val("");
+        $("#nombre").blur();
+        $("#apellido").blur();
+        $("#telefono").blur();
+
+        $('#btn_save').show();
+        $('#save_edit').hide();
+    }
+
     // Metodo que se encargar de la guardar datos
     $(document).on('click', '#btn_save', function (e) {
         e.preventDefault();
@@ -134,7 +147,7 @@ $(document).ready(function (e) {
                         "<td class=\"apellido\">" + alumno.apellido + "</td>" +
                         "<td class=\"telefono\">" + alumno.telefono + "</td>" +
                         "<td><button class=\"waves-effect waves-light btn amber darken-3 show_edit\" data-id_alumno=\"" + alumno.id + "\">Editar</button></td>" +
-                        "<td><button class=\"waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete\" data-id_alumno=\"<?php echo $alumno->id; ?>\" title=\"¿Deseas eiminar este registro?\">Eliminar</button></td>" +
+                        "<td><button class=\"waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete\" data-id_alumno=\"" + alumno.id + "\" title=\"¿Deseas eiminar este registro?\">Eliminar</button></td>" +
                         "</tr>";
                 });
                 $("#tbody-alumnos").html(tbody)
@@ -147,21 +160,8 @@ $(document).ready(function (e) {
         //Ejemplo del metodo de recargar el componente
         //$("#tb_alumno").load($uri+" table#tb_alumno");
         httpRequest(uri, function () {
-            $(idEtiqueta).load(uri+" "+etiqueta+id_etiqueta);
+            $(id_etiqueta).load(uri+" "+etiqueta+id_etiqueta);
         });
-    }
-
-    //Metodo que se encarga de limpiar los campos del formulario
-    function limpiar() {
-        $("#nombre").val("");
-        $("#apellido").val("");
-        $("#telefono").val("");
-        $("#nombre").blur();
-        $("#apellido").blur();
-        $("#telefono").blur();
-
-        $('#btn_save').show();
-        $('#save_edit').hide();
     }
 
     //Metodo que se encarga realizar una peticicon HTTP por medio una url
