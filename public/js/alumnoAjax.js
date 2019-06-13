@@ -31,11 +31,6 @@ $(document).ready(function (e) {
             },
             success: function (response) {
 
-                /*
-                httpRequest($uri, function () {
-                    $("#tb_alumno").load($uri+" table#tb_alumno");
-                });
-                */
                 mostrarDatos();
 
                 $("#div_form").hide();
@@ -79,6 +74,8 @@ $(document).ready(function (e) {
         var apellido = $td_datos.siblings('.apellido').text();
         var telefono = $td_datos.siblings('.telefono').text();
 
+        console.log(nombre)
+
         limpiar();
 
         //Mostramos los datos en el formulario
@@ -93,7 +90,6 @@ $(document).ready(function (e) {
         $('#btn_save').hide();
         $('#save_edit').show();
 
-        //e.preventDefault()
     });
 
     $(document).on('click', '#save_edit', function (e) {
@@ -114,11 +110,6 @@ $(document).ready(function (e) {
             },
             success: function (response) {
 
-                /*
-                httpRequest($uri, function () {
-                    $("#tb_alumno").load($uri+" table#tb_alumno");
-                });
-                 */
                 mostrarDatos();
 
                 $("#div_form").hide();
@@ -128,6 +119,7 @@ $(document).ready(function (e) {
 
     });
 
+    //Metodo que se encargar de mostrar los datos de una tabla
     function mostrarDatos() {
         $.ajax({
             url: 'http://localhost/mvc_php/alumnorest/findall',
@@ -135,13 +127,13 @@ $(document).ready(function (e) {
             success: function (response) {
                 const valores = JSON.parse(response);
                 let tbody = '';
-                console.log(valores);
+
                 valores.forEach(alumno => {
                     tbody += "<tr>" +
-                        "<td>" + alumno.nombre + "</td>" +
-                        "<td>" + alumno.apellido + "</td>" +
-                        "<td>" + alumno.telefono + "</td>" +
-                        "<td><button class=\"waves-effect waves-light btn amber darken-3 show_edit\" data-id_alumno=\"<?php echo $alumno->id; ?>\">Editar</button></td>" +
+                        "<td class=\"nombre\">" + alumno.nombre + "</td>" +
+                        "<td class=\"apellido\">" + alumno.apellido + "</td>" +
+                        "<td class=\"telefono\">" + alumno.telefono + "</td>" +
+                        "<td><button class=\"waves-effect waves-light btn amber darken-3 show_edit\" data-id_alumno=\"" + alumno.id + "\">Editar</button></td>" +
                         "<td><button class=\"waves-effect waves-light btn deep-orange darken-2 btn_eliminar btn_delete\" data-id_alumno=\"<?php echo $alumno->id; ?>\" title=\"¿Deseas eiminar este registro?\">Eliminar</button></td>" +
                         "</tr>";
                 });
@@ -150,7 +142,16 @@ $(document).ready(function (e) {
         });
     }
 
+    //Metodo que sirve pare recargar solo la parte de componente mediante una vista
+    function recargarComponente(uri, etiqueta, id_etiqueta) {
+        //Ejemplo del metodo de recargar el componente
+        //$("#tb_alumno").load($uri+" table#tb_alumno");
+        httpRequest(uri, function () {
+            $(idEtiqueta).load(uri+" "+etiqueta+id_etiqueta);
+        });
+    }
 
+    //Metodo que se encarga de limpiar los campos del formulario
     function limpiar() {
         $("#nombre").val("");
         $("#apellido").val("");
@@ -163,6 +164,7 @@ $(document).ready(function (e) {
         $('#save_edit').hide();
     }
 
+    //Metodo que se encarga realizar una peticicon HTTP por medio una url
     function httpRequest(url, callback) {
         const http = new XMLHttpRequest();
         http.open("GET", url);
